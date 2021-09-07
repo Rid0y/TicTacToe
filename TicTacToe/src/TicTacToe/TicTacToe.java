@@ -25,14 +25,14 @@ public class TicTacToe implements ActionListener{
 			//Frame Design
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(800,800);
-			frame.getContentPane().setBackground(new Color(55,25,25));
+			frame.getContentPane().setBackground(Color.black);
 			frame.setLayout(new BorderLayout());
 			frame.setVisible(true);
 			
 			//Textfield Design
-			textfield.setBackground(new Color(25,25,25));
-			textfield.setForeground(new Color(25, 255,0));
-			textfield.setFont(new Font("Ink Free", Font.BOLD, 75));
+			textfield.setBackground(Color.DARK_GRAY);
+			textfield.setForeground(Color.cyan);
+			textfield.setFont(new Font("SansSerif", Font.BOLD, 75));
 			textfield.setHorizontalAlignment(JLabel.CENTER);
 			textfield.setText("Tic Tac Toe");
 			textfield.setOpaque(true);
@@ -45,9 +45,12 @@ public class TicTacToe implements ActionListener{
 			button_p.setLayout(new GridLayout(3,3));
 			button_p.setBackground(new Color(150,150,150));
 			
+			
+			
 			//For Loop to add Buttons to Frame 
 			for(int i=0; i<9; i++) {
 				button[i] = new JButton();
+				button[i].setBackground(new Color(51,204,255));
 				button_p.add(button[i]);
 				button[i].setFont(new Font("MV Boli", Font.BOLD, 120));
 				button[i].setFocusable(false);
@@ -80,7 +83,7 @@ public class TicTacToe implements ActionListener{
 					if(p_turn_1) {
 						//if statement to output player decision 
 						if(button[i].getText()=="") {
-							button[i].setForeground(Color.blue);
+							button[i].setForeground(new Color(102,52,0));
 							button[i].setText("X");
 							//change turns
 							p_turn_1 = false;
@@ -93,7 +96,7 @@ public class TicTacToe implements ActionListener{
 					else {
 						//if statement to output player decision 
 						if(button[i].getText()=="") {
-							button[i].setForeground(Color.red);
+							button[i].setForeground(new Color(102,0,153));
 							button[i].setText("O");
 							//change turns
 							p_turn_1 = true;
@@ -143,7 +146,7 @@ public class TicTacToe implements ActionListener{
 				
 				//calling function
 				x_win(0,1,2);
-			}
+			} 
 			if(		(button[3].getText()=="X") &&
 					(button[4].getText()=="X") &&
 					(button[5].getText()=="X")) {
@@ -193,11 +196,9 @@ public class TicTacToe implements ActionListener{
 				//calling function
 				x_win(2,4,6);
 			}
-			//end X win Condition
-		
 			
 			//check O win condition
-			if(		(button[0].getText()=="O") &&
+			if(		(button[0].getText()=="O") &&  
 					(button[1].getText()=="O") &&
 					(button[2].getText()=="O")) {
 				
@@ -252,8 +253,21 @@ public class TicTacToe implements ActionListener{
 				
 				//calling function
 				o_win(2,4,6);
+			} else {
+				
+				boolean isTie = true;
+			
+				//for loop to find a tie
+				for (int i = 0; i < button.length; i ++) {
+					if (button[i].getText() == "") {
+						isTie = false;
+					}
+				}
+				
+				if (isTie) {
+					textfield.setText("Tie");
+				}
 			}
-			//end O win Condition
 			
 			
 		}
@@ -274,14 +288,6 @@ public class TicTacToe implements ActionListener{
 					}
 					textfield.setText("X wins");
 					
-					// Two second delay
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
-					textfield.setText("Thanks for playing");
 		}
 				
 				
@@ -298,14 +304,8 @@ public class TicTacToe implements ActionListener{
 			}
 			textfield.setText("O wins");
 			
-			// Two second delay
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}			
+					
 			
-			textfield.setText("Thanks for playing");
 			
 		}
 }
