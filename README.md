@@ -1,6 +1,7 @@
 # Tic Tac Toe
 
 This is a **Java** based multiplayer program that allows the user to play a childhood favorite game of mine called Tic-Tac-Toe.
+![tic_pic](https://user-images.githubusercontent.com/89995670/132369117-47c2b35c-7149-47fe-9fcc-5e70f9054eba.PNG)
 
 
 # How to Play
